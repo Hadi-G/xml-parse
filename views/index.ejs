@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Made with Thimble</title>
+    <link rel="stylesheet" href="style.css">
+    
+    
+  </head>
+  <body>
+    
+    <section id="demo"></section>
+    
+    
+    <script>
+    
+    
+      var text, parser, xmlDoc;
+    
+      text = `<channel>
+
+        <item mainColor="cc7532" sndColor="b6682d">
+          <titre><![CDATA[Vehicula Commodo]]></titre>
+      <content><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam.]]></content>
+      </item>
+
+      <item mainColor="744b19" sndColor="674316">
+        <titre><![CDATA[Ultricies Sit Ridiculus]]></titre>
+      <content><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod semper.]]></content>
+      </item>
+
+      <item mainColor="65b460" sndColor="5aa055">
+        <titre><![CDATA[Parturient Magna Quam]]></titre>
+      <content/>
+      </item>
+
+      <item mainColor="438832" sndColor="3c792d">
+        <titre><![CDATA[Magna Mollis Etiam Risus]]></titre>
+      <content><![CDATA[Nullam id dolor id nibh ultricies vehicula ut id elit. Nullam quis risus eget urna mollis ornare vel eu leo.]]></content>
+      </item>
+
+      <item mainColor="0096d6" sndColor="0086bf" pathPicto="price.png">
+        <titre><![CDATA[Sem Quam Dapibus]]></titre>
+      <content><![CDATA[Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper.]]></content>
+      </item>
+
+      <item mainColor="1c64b0" sndColor="1c5492" pathPicto="rouages.png">
+        <titre><![CDATA[Malesuada Magna Commodo]]></titre>
+      <content/>
+      </item>
+
+      <item mainColor="205352" sndColor="1c4a49" pathPicto="flechgraph.png">
+        <titre><![CDATA[Purus Ornare]]></titre>
+      <content><![CDATA[Donec id elit non mi porta gravida at eget metus. Aenean lacinia bibendum nulla sed consectetur.]]></content>
+      </item>
+
+      </channel>`;
+      
+      parser = new DOMParser();
+      xmlDoc = parser.parseFromString(text,"text/xml");
+      
+      var div = document.createElement('div');
+      var h1 = document.createElement('h1');
+      var p = document.createElement('p');
+      var section = document.getElementById('demo');
+
+//      document.getElementById('demo').innerHTML = 
+      
+      
+      
+      var contentValue = xmlDoc.getElementsByTagName('item')[0].getElementsByTagName('content')[0].childNodes[0].nodeValue;
+      var titreValue = xmlDoc.getElementsByTagName('item')[0].getElementsByTagName('titre')[0].childNodes[0].nodeValue;
+      
+      var backcolor = xmlDoc.getElementsByTagName('item')[0].attributes[0].nodeValue;
+      var backcolor2 = xmlDoc.getElementsByTagName('item')[0].attributes[1].nodeValue;
+      
+      
+      document.body.appendChild(div);
+      div.appendChild(h1).innerHTML= titreValue;
+      div.appendChild(p).innerHTML = contentValue;
+      
+      div.style.backgroundColor = "#"+backcolor;
+      div.style.border = `1px solid #${backcolor}`;
+      div.style.color="#fff";
+      h1.style.fontFamily="arial, bold, 16px";
+      h1.style.textAlign="center";
+      p.style.fontFamily="arial, regular, 14px,";
+      p.style.textAlign="center";
+      
+      div.addEventListener('mouseover', function(){
+        div.style.backgroundColor = "#"+backcolor2;
+        div.style.border = `1px solid #${backcolor2}`;
+      });
+      
+      div.addEventListener('mouseout', function(){
+        div.style.backgroundColor = "#"+backcolor;
+        div.style.border = `1px solid #${backcolor}`;
+      });
+      
+      
+      var div1 = document.createElement('div');
+      var h11 = document.createElement('h1');
+      var p1 = document.createElement('p');
+      
+      var contentValue1 = xmlDoc.getElementsByTagName('item')[1].getElementsByTagName('content')[0].childNodes[0].nodeValue;
+      var titreValue1 = xmlDoc.getElementsByTagName('item')[1].getElementsByTagName('titre')[0].childNodes[0].nodeValue;
+
+      var backcolor1 = xmlDoc.getElementsByTagName('item')[1].attributes[0].nodeValue;
+      var backcolor21 = xmlDoc.getElementsByTagName('item')[1].attributes[1].nodeValue;
+      
+      document.body.appendChild(div1);
+      div1.appendChild(h11).innerHTML= titreValue1;
+      div1.appendChild(p1).innerHTML = contentValue1;
+      
+      div1.style.backgroundColor = "#"+backcolor1;
+      div1.style.border = `1px solid #${backcolor1}`;
+      div1.style.color="#fff";
+      h11.style.fontFamily="arial, bold, 16px";
+      h11.style.textAlign="center";
+      p1.style.fontFamily="arial, regular, 14px,";
+      p1.style.textAlign="center";
+
+      div1.addEventListener('mouseover', function(){
+        div1.style.backgroundColor = "#"+backcolor21;
+        div1.style.border = `1px solid #${backcolor21}`;
+      });
+
+      div1.addEventListener('mouseout', function(){
+        div1.style.backgroundColor = "#"+backcolor1;
+        div1.style.border = `1px solid #${backcolor1}`;
+      });
+      
+//      for(var i =0; i<xmlDoc.getElementsByTagName('item').length; i++ ){
+//        
+//        let div = document.createElement('div');
+//        let h1 = document.createElement('h1');
+//        let p = document.createElement('p');
+//        
+//        document.body.appendChild(div);
+//        div.appendChild(h1).innerHTML= xmlDoc.getElementsByTagName('item')[i].getElementsByTagName('titre')[0].childNodes[0].nodeValue;
+//        div.appendChild(p).innerHTML = xmlDoc.getElementsByTagName('item')[i].getElementsByTagName('content')[0].childNodes[0].nodeValue;
+//        
+//        div.style.backgroundColor = "#"+xmlDoc.getElementsByTagName('item')[i].attributes[0].nodeValue;
+//        div.style.border = `1px solid #${xmlDoc.getElementsByTagName('item')[i].attributes[0].nodeValue}`;
+//        div.style.color="#fff";
+//        h1.style.fontFamily="arial, bold, 16px";
+//        h1.style.textAlign="center";
+//        p.style.fontFamily="arial, regular, 14px,";
+//        p.style.textAlign="center";
+//
+//        div.addEventListener('mouseover', function(){
+//          div.style.backgroundColor = "#"+xmlDoc.getElementsByTagName('item')[i].attributes[1].nodeValue;
+//          div.style.border = `1px solid #${xmlDoc.getElementsByTagName('item')[i].attributes[1].nodeValue}`;
+//        });
+//
+//        div.addEventListener('mouseout', function(){
+//          div.style.backgroundColor = "#"+xmlDoc.getElementsByTagName('item')[i].attributes[0].nodeValue;
+//          div.style.border = `1px solid #${xmlDoc.getElementsByTagName('item')[i].attributes[0].nodeValue}`;
+//        });
+//        
+//      }
+         
+    
+    </script>
+    
+  </body>
+</html>
